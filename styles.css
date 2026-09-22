@@ -11,7 +11,7 @@ body {
    2. BORDER-LESS CONSTANT GLASSMORPHISM
    ========================================= */
 
-/* Main Glass Cards & Containers (Always Active Glow, No Hover Needed) */
+/* Main Glass Cards & Containers */
 .glass-panel {
     background: rgba(255, 255, 255, 0.55);
     
@@ -19,15 +19,12 @@ body {
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     
-    /* NO HARD BORDER: Constant rich ambient drop shadow & inner white reflection */
     border: none;
     border-radius: 24px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 
                 inset 0 1.5px 2px rgba(255, 255, 255, 0.9), 
                 0 0 25px rgba(167, 139, 250, 0.2);
     
-    /* Constant floating look */
-    transform: translateY(-2px);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -124,4 +121,29 @@ body {
 @keyframes spin { 
     0% { transform: rotate(0deg); } 
     100% { transform: rotate(360deg); } 
+}
+
+/* =========================================
+   7. MOBILE RESPONSIVE FIXES (MEDIA QUERY)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* Remove constant translateY offset on mobile screens to prevent layout bugs */
+    .glass-panel {
+        transform: none !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 
+                    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Adjust padding for smaller viewports */
+    .main-content, #home-screen, #report-screen, #rewards-screen {
+        padding: 12px !important;
+    }
+
+    /* Ensure chatbot window fits nicely inside mobile screens */
+    #chatbot-window {
+        width: calc(100% - 24px) !important;
+        right: 12px !important;
+        bottom: 85px !important;
+        max-width: none !important;
+    }
 }
